@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tooltip con CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            position: relative;
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        nav a:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        /* Animaciones adicionales */
+        nav a[data-animation="fade"]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        nav a[data-animation="slide"]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        nav a[data-animation="scale"]:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" data-tooltip="Inicio" data-animation="fade">Home</a>
+        <a href="#" data-tooltip="Proyectos" data-animation="slide">Projects</a>
+        <a href="#" data-tooltip="Blog" data-animation="scale">Blog</a>
+    </nav>
+</body>
+</html>
